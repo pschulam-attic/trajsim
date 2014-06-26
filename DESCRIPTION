@@ -1,0 +1,14 @@
+Package: trajsim
+Type: Package
+Title: Simulate trajectories from heterogeneous populations.
+Version: 1.0
+Date: 2014-06-26
+Author: Peter Schulam
+Maintainer: Peter Schulam <pschulam@gmail.com>
+Description: Simulate trajectories from heterogeneous populations.
+License: MIT
+Imports:
+    mvtnorm,
+    MCMCpack,
+    fda,
+    ggplot2

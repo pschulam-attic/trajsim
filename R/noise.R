@@ -16,11 +16,11 @@ simulate.white_noise <- function(noise, x) {
 # gp_noise ----------------------------------------------------------------
 
 #' @export
-gp_noise <- function(bandwidth, ampl, noise) {
+gp_noise <- function(bw, amp, noise) {
 
   kernel <- function(x, y) {
     d <- abs(x - y)
-    k <- ampl^2 * exp(-1/2 * d^2 / bandwidth^2)
+    k <- amp^2 * exp(-1/2 * d^2 / bw^2)
     k <- k + ifelse(x == y, noise^2, 0)
     k
   }
@@ -33,5 +33,5 @@ gp_noise <- function(bandwidth, ampl, noise) {
 #' @export
 simulate.gp_noise <- function(noise, x) {
   kern_mat <- outer(x, x, noise$kernel)
-  as.numeric(rmvnorm(1, sigma = kern_mat))
+  as.numeric(mvtnorm::rmvnorm(1, sigma = kern_mat))
 }

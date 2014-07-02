@@ -1,6 +1,8 @@
 #' Simulate disease trajectories from subpopulations.
 #'
-#' @import fda ggplot2
+#' @import fda
+#' @import ggplot2
+#' @import splines
 #'
 #' @docType package
 #' @name trajsim

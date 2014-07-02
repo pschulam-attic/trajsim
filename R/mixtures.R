@@ -2,9 +2,9 @@
 # bspline_mixture ---------------------------------------------------------
 
 #' @export
-bspline_mixture <- function(num_groups, basis, seed = 1) {
+bspline_mixture <- function(num_groups, basis, alpha = 1, seed = 1) {
   set.seed(seed)
-  mix_probs <- as.numeric(MCMCpack::rdirichlet(1, rep(1, num_groups)))
+  mix_probs <- as.numeric(MCMCpack::rdirichlet(1, rep(alpha, num_groups)))
   bsplines <- simulate(basis, num_groups)
   mixture <- structure(list(), class = "bspline_mixture")
   mixture$num_groups <- num_groups

@@ -24,10 +24,14 @@ bspline_basis <- function(x_range, num_bases) {
 }
 
 #' @export
-simulate.bspline_basis <- function(basis, n = 1) {
-  coef_mean <- rep(0, basis$nbasis)
-  coef_covm <- diag(basis$nbasis)
-  coefficients <- mvtnorm::rmvnorm(n, coef_mean, coef_covm)
+simulate.bspline_basis <- function(basis, n = 1, mean=NULL, sigma=NULL) {
+  if (is.null(mean))
+    mean <- rep(0, basis$nbasis)
+
+  if (is.null(sigma))
+    sigma <- diag(basis$nbasis)
+
+  coefficients <- mvtnorm::rmvnorm(n, mean, sigma)
   funcs <- lapply(seq(n), function(ix) {
     bspline_func(coefficients[ix, ], basis)
   })
